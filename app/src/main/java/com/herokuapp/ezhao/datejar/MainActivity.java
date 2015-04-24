@@ -1,19 +1,28 @@
 package com.herokuapp.ezhao.datejar;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.herokuapp.ezhao.datejar.fragments.MainFragment;
+
 
 public class MainActivity extends ActionBarActivity {
+    FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        MainFragment mainFragment = new MainFragment();
+        ft.replace(R.id.flFragment, mainFragment);
+        ft.commit();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
