@@ -1,5 +1,7 @@
 package com.herokuapp.ezhao.datejar;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -10,7 +12,7 @@ import android.view.MenuItem;
 import com.herokuapp.ezhao.datejar.fragments.MainFragment;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements MainFragment.ShowIdeaListener {
     FragmentManager fm;
 
     @Override
@@ -44,5 +46,26 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showIdea(final Idea idea) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(idea.ideaText)
+               .setTitle(R.string.show_idea_dialog_title)
+               .setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       idea.delete();
+                       dialog.dismiss();
+                   }
+               })
+               .setNegativeButton(R.string.next_time, new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.dismiss();
+                   }
+               })
+               .create().show();
     }
 }
