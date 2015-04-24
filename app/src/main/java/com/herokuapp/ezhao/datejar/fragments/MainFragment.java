@@ -48,9 +48,10 @@ public class MainFragment extends Fragment {
                     idea.save();
 
                     // reset state of text field and keyboard
-                    v.setText("");
                     InputMethodManager imm =(InputMethodManager) ((Activity) listener).getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    v.setText("");
+                    v.clearFocus();
                 }
                 return true;
             }
