@@ -14,10 +14,8 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.herokuapp.ezhao.datejar.Idea;
 import com.herokuapp.ezhao.datejar.R;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -58,6 +56,7 @@ public class MainFragment extends Fragment {
 
     @OnClick(R.id.btnPullIdea)
     public void onPullIdea(View view) {
-        Log.i("EMILY", Idea.getAll().toString());
+        Idea idea = Idea.getRandom();
+        Log.i("EMILY", idea.ideaText);
     }
 }
